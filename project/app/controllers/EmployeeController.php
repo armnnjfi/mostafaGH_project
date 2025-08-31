@@ -2,13 +2,8 @@
 require_once "init.php";
 class EmployeeController extends controller
 {
-    public function dashboard()
+    public function getEmployeesWithoutCompany()
     {
-        if ($this->check_auth()) {
-            $this->view("employee_dashboard");
-        } else {
-            header('location:' . Constants::BASE_URL . 'login');
-            exit();
-        }
+        $this->view('no_company_employees');
     }
 }

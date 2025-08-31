@@ -57,7 +57,7 @@ class AuthController extends controller
             }
         } else {
             $csrf = new SecurityService();
-            $csrf->setCSRFToken(); // فقط اینجا بساز و توی سشن ذخیره کن
+            $csrf->setCSRFToken();
 
             // فقط هش‌شده‌اش رو به ویو بده
             $this->view('login', ['csrf_token' => $csrf->getCSRFToken()]);

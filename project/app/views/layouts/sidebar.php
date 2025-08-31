@@ -4,6 +4,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') { ?>
     align-items: center; gap: 30px;  background-color:rgba(217, 217, 217, 0.9);
      color: black; height: auto; float:right; padding:15px;">
         <li><a href="<?= Constants::BASE_URL ?>add_company" style="text-decoration: none; color:black;">ثبت شرکت جدید </a></li>
+        <li><a href="<?= Constants::BASE_URL ?>employee_list" style="text-decoration: none; color:black;">لیست کارمندان بدون شرکت</a></li>
     </ul>
 <?php } else if (isset($_SESSION['role']) && $_SESSION['role'] == 'employee') { ?>
 

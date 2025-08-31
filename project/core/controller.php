@@ -8,6 +8,7 @@ class controller
         'employee_dashboard' => 'dashboard',
         'admin_dashboard' => 'dashboard',
         'add_company' => 'company',
+        'no_company_employees' => 'employee',
     ];
 
     public function selectFolder($file_name)

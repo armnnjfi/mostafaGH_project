@@ -8,6 +8,7 @@
 <body>
     <form action="<?= Constants::BASE_URL?>add_company" method="post">
         <label for="companyName">Name :</label>
+        <input type="hidden" name="csrf-token" value="<?= $data['csrf_token']; ?>">
         <input type="text" id="companyName" name="companyName"><br><br>
         <input type="submit" value="ثبت شرکت جدید">
     </form>

@@ -62,12 +62,19 @@ class route
                 'action' => 'addCompany',
                 'method' => 'POST'
             ],
-            
+
             //show add Company page
             [
                 'url' => '/^add_company$/',
                 'controller' => 'CompanyController',
                 'action' => 'showPage',
+                'method' => 'GET'
+            ],
+            //show employee list
+            [
+                'url' => '/^employee_list$/',
+                'controller' => 'EmployeeController',
+                'action' => 'getEmployeesWithoutCompany',
                 'method' => 'GET'
             ],
         ];
