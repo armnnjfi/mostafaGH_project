@@ -9,10 +9,7 @@
 
 <body>
     <form action="<?= Constants::BASE_URL . "login"?>"  method="post">
-        <!-- todo -->
-         
-        <!-- <input type="hidden" name="csrf-token" value="<?php //echo $csrf->getCSRFToken(); ?>"> -->
-
+        <input type="hidden" name="csrf-token" value="<?= $data['csrf_token']; ?>">
         <label for="">Name:</label>
         <input type="text" name="Name" placeholder="userName...">
         <br>

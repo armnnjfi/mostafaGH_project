@@ -1,1 +1,1 @@
-<h2>salam</h2>
+<h2>salam <?= $_SESSION['name']; ?></h2>

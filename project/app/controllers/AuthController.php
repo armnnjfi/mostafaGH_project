@@ -6,12 +6,17 @@ class AuthController extends controller
     {
         if ($this->check_auth()) {
             if ($this->is_admin()) {
-                $this->view('admin_dashboard');
+                header('location: ' . Constants::REDIRECT_ADMIN_URL);
+                exit();
             } else {
-                $this->view('employee_dashboard');
+                header('location: ' . Constants::REDIRECT_EMPLOYEE_URL);
+                exit();
             }
         } else {
-            $this->view('register');
+            $csrf = new SecurityService();
+            $csrf->setCSRFToken();
+
+            $this->view('register', ['csrf_token' => $csrf->getCSRFToken()]);
         }
     }
 
@@ -39,17 +44,6 @@ class AuthController extends controller
         }
     }
 
-    // public function activate_user($token)
-    // {
-    //     include 'app/model/user.php';
-    //     $new_user = new user();
-    //     $result = $new_user->activate_user($token);
-
-    //     if ($result['response'] == 200) {
-    //         header('location: http://localhost/mvc/login');
-    //         exit();
-    //     }
-    // }
 
     public function show_login_page()
     {
@@ -62,12 +56,25 @@ class AuthController extends controller
                 exit();
             }
         } else {
-            $this->view('login');
+            $csrf = new SecurityService();
+            $csrf->setCSRFToken(); // فقط اینجا بساز و توی سشن ذخیره کن
+
+            // فقط هش‌شده‌اش رو به ویو بده
+            $this->view('login', ['csrf_token' => $csrf->getCSRFToken()]);
         }
     }
 
+
+
     public function user_login()
     {
+        $csrf = new SecurityService();
+        $csrf_token = $_POST['csrf-token'] ?? '';
+
+        if (!$csrf->validate_token($csrf_token)) {
+            die("Invalid CSRF token!");
+        }
+
         $name = $_POST['Name'];
         $password = $_POST['password'];
 
@@ -79,11 +86,18 @@ class AuthController extends controller
             $_SESSION['company_id'] = $res['message']['company_id'];
             $_SESSION['role'] = $res['message']['role'];
             $_SESSION['is_auth'] = 1;
+
+            if ($this->is_admin()) {
+                $this->view("admin_dashboard");
+            } else {
+                $this->view("employee_dashboard");
+            }
         } else {
             header('location:' . Constants::BASE_URL . 'login');
             exit();
         }
     }
+
     public function logout()
     {
         session_destroy();
