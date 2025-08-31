@@ -44,7 +44,7 @@ class route
             // Admin Dashboard
             [
                 'url' => '#^dashboard/admin$#',
-                'controller' => 'َAdminController',
+                'controller' => 'AdminController',
                 'action' => 'dashboard',
                 'method' => 'GET'
             ],
@@ -54,6 +54,21 @@ class route
                 'controller' => 'AuthController',
                 'action' => 'logout',
                 'method' => 'POST'
+            ],
+            //add new Company
+            [
+                'url' => '/^add_company$/',
+                'controller' => 'CompanyController',
+                'action' => 'addCompany',
+                'method' => 'POST'
+            ],
+            
+            //show add Company page
+            [
+                'url' => '/^add_company$/',
+                'controller' => 'CompanyController',
+                'action' => 'showPage',
+                'method' => 'GET'
             ],
         ];
         $routing_fail = true;

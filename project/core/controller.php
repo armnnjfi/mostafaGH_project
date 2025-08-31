@@ -1,5 +1,5 @@
 <?php
-
+require_once 'init.php';
 class controller
 {
     private $folderMap = [
@@ -7,6 +7,7 @@ class controller
         'login'     => 'auth',
         'employee_dashboard' => 'dashboard',
         'admin_dashboard' => 'dashboard',
+        'add_company' => 'company',
     ];
 
     public function selectFolder($file_name)
@@ -19,6 +20,7 @@ class controller
         $folderName = $this->selectFolder($file_name);
 
         $this->nav('header');
+        $this->nav('sidebar');
 
         include "app/views/" . $folderName . "/" . $file_name . '.php';
     }
