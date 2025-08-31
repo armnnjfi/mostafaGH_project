@@ -77,6 +77,13 @@ class route
                 'action' => 'getEmployeesWithoutCompany',
                 'method' => 'GET'
             ],
+             //set company for employees
+            [
+                'url' => '/^setCompanyForEmp$/',
+                'controller' => 'EmployeeController',
+                'action' => 'setCompany',
+                'method' => 'POST'
+            ],
         ];
         $routing_fail = true;
         foreach ($urls_arr as $url_arr) {

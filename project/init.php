@@ -6,3 +6,4 @@ require_once "core/controller.php";
 require_once 'core/model.php';
 require_once 'app/models/Users.php';
 require_once 'app/models/Company.php';
+require_once 'app/models/Employee.php';

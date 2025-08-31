@@ -8,31 +8,37 @@
 </head>
 
 <body>
+    <form action="<?= Constants::BASE_URL ?>setCompanyForEmp" method="post">
+    <input type="hidden" name="csrf_token" value="<?= $data['csrf_token'] ?>">
     <table>
         <thead>
             <tr>
                 <th>id</th>
                 <th>Name</th>
                 <th>email</th>
-                <th>Role</th>
+                <th>Appointment of</th>
             </tr>
         </thead>
         <tbody>
-            <?php //foreach ($data['user'] as $user) { ?>
+            <?php foreach ($data['noCompanyEmp'] as $noCompanyEmp) { ?>
                 <tr>
-                    <!-- <td><?php //echo $user['id']; ?></td>
-                    <td><?php //echo $user['name']; ?></td>
-                    <td><?php //echo $user['role']; ?></td>
-                    <td><?php //echo $user['email']; ?></td>
-                    <td><a href="http://localhost/sina%20project/mvc/project/admin/userPromote?userId=<?php //echo $user['id'] ?>"><button>promote to admin</button></a></td>
-                    <?php //if ($user['id'] != '5') { ?>
-                        <td><a href="http://localhost/sina%20project/mvc/project/admin/adminToUser?userId=<?php //echo $user['id'] ?>"><button>to user</button></a></td>
-                    <?php // } ?> -->
-
+                    <td><?= $noCompanyEmp['id']; ?></td>
+                    <td><?= $noCompanyEmp['name']; ?></td>
+                    <td><?= $noCompanyEmp['email']; ?></td>
+                    <td>
+                        <select name="company_id[<?= $noCompanyEmp['id']; ?>]" >
+                            <option value="" disabled selected>یک شرکت انتخاب کنید</option>
+                            <?php foreach ($data['companies'] as $company) { ?>
+                                <option value="<?= $company['id']; ?>"><?= $company['name']; ?></option>
+                            <?php } ?>
+                        </select>
+                    </td>
                 </tr>
-            <?php //} ?>
+            <?php } ?>
         </tbody>
     </table>
+    <button type="submit">ذخیره</button>
+</form>
 </body>
 
 </html>

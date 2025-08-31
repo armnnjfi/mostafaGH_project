@@ -57,9 +57,6 @@ class AuthController extends controller
             }
         } else {
             $csrf = new SecurityService();
-            $csrf->setCSRFToken();
-
-            // فقط هش‌شده‌اش رو به ویو بده
             $this->view('login', ['csrf_token' => $csrf->getCSRFToken()]);
         }
     }

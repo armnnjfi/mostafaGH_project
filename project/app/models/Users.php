@@ -25,20 +25,19 @@ class Users extends model
         $user = $result->get_result()->fetch_assoc();
 
         if (password_verify($password, $user['password'])) {
-            // echo "yes";
             return ['response' => 200, 'message' => $user];
         }
         return ['response' => 403, 'message' => 'Error! Invalid username or password.'];
     }
 
-    // public function showAllUsers()
-    // {
-    //     $query = "SELECT id,name,role,email FROM users";
-    //     $result = $this->connection->prepare($query);
-    //     $result->execute();
+    public function getNoCompanyEmployee()
+    {
+        $query = "SELECT id,name,email,company_id FROM users where company_id = 0";
+        $result = $this->connection->prepare($query);
+        $result->execute();
 
-    //     return $result->get_result();
-    // }
+        return $result->get_result();
+    }
 
     // public function userPromoteToAdmin($userId)
     // {
@@ -46,9 +45,11 @@ class Users extends model
     //     $this->connection->query($query);
     // }
 
-    // public function adminToUser($userId)
-    // {
-    //     $query = "UPDATE users SET  role ='user' WHERE id = '" . $userId . "'";
-    //     $this->connection->query($query);
-    // }
+    public function userToEmployee($userId,$companyId)
+    {
+        $query = "UPDATE users SET  company_id = " . $companyId . " WHERE id = '" . $userId . "'";
+
+        $result = $this->connection->prepare($query);
+        $result->execute();
+    }
 }
