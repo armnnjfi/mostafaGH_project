@@ -9,6 +9,7 @@ class controller
         'admin_dashboard' => 'dashboard',
         'add_company' => 'company',
         'no_company_employees' => 'employee',
+        'attendanceForms' => 'employee',
     ];
 
     public function selectFolder($file_name)

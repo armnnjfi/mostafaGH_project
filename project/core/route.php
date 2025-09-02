@@ -84,6 +84,20 @@ class route
                 'action' => 'setCompany',
                 'method' => 'POST'
             ],
+            //check in / check out employees
+            [
+                'url' => '/^check_in_out$/',
+                'controller' => 'AttendanceController',
+                'action' => 'showForms',
+                'method' => 'GET'
+            ],
+            // submit Attendance
+            [
+                'url' => '/^submit_Attendance$/',
+                'controller' => 'AttendanceController',
+                'action' => 'submitAttendance',
+                'method' => 'POST'
+            ],
         ];
         $routing_fail = true;
         foreach ($urls_arr as $url_arr) {

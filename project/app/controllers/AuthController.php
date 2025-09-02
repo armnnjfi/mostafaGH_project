@@ -44,7 +44,6 @@ class AuthController extends controller
         }
     }
 
-
     public function show_login_page()
     {
         if ($this->check_auth()) {
@@ -83,6 +82,7 @@ class AuthController extends controller
             $_SESSION['company_id'] = $res['message']['company_id'];
             $_SESSION['role'] = $res['message']['role'];
             $_SESSION['is_auth'] = 1;
+            $_SESSION['attendance'] = 0;
 
             if ($this->is_admin()) {
                 $this->view("admin_dashboard");
@@ -97,8 +97,12 @@ class AuthController extends controller
 
     public function logout()
     {
-        session_destroy();
-        header('location:' . Constants::BASE_URL . 'login');
-        exit();
+        if ($_SESSION['attendance'] == 1) {
+            echo "<script>alert('تایم خروج وارد نشده!'); window.location.href = '" . Constants::BASE_URL . "dashboard/employee';</script>";
+        } else {
+            session_destroy();
+            header('location:' . Constants::BASE_URL . 'login');
+            exit();
+        }
     }
 }
