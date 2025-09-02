@@ -10,6 +10,8 @@ class controller
         'add_company' => 'company',
         'no_company_employees' => 'employee',
         'attendanceForms' => 'employee',
+        'leaveForm' => 'leave',
+        'leaveRequestsList' => 'leave',
     ];
 
     public function selectFolder($file_name)

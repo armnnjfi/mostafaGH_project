@@ -98,6 +98,36 @@ class route
                 'action' => 'submitAttendance',
                 'method' => 'POST'
             ],
+
+             // show request form
+            [
+                'url' => '/^leave_form$/',
+                'controller' => 'LeaveController',
+                'action' => 'showForm',
+                'method' => 'GET'
+            ],
+             // send request to admin
+            [
+                'url' => '/^leave_form$/',
+                'controller' => 'LeaveController',
+                'action' => 'leave',
+                'method' => 'POST'
+            ],
+
+            // leave requests list
+            [
+                'url' => '/^leave_requests$/',
+                'controller' => 'LeaveController',
+                'action' => 'showLeaveRequests',
+                'method' => 'GET'
+            ],
+            // approve reject leave request
+            [
+                'url' => '/^approve_reject_request$/',
+                'controller' => 'LeaveController',
+                'action' => 'approve_reject_request',
+                'method' => 'POST'
+            ],
         ];
         $routing_fail = true;
         foreach ($urls_arr as $url_arr) {
