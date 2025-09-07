@@ -9,7 +9,7 @@
 
 <body>
     <form action="register" method="POST">
-        <input type="hidden" name="csrf_token" value="<?= $data['csrf_token']; ?>">
+        <input type="hidden" name="csrf-token" value="<?= $data['csrf_token']; ?>">
         
         <label for="">Name:</label>
         <input type="text" name="name" placeholder="Name...">

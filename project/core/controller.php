@@ -12,6 +12,8 @@ class controller
         'attendanceForms' => 'employee',
         'leaveForm' => 'leave',
         'leaveRequestsList' => 'leave',
+        'attendances_reports' => 'reports',
+        'reports' => 'reports',
     ];
 
     public function selectFolder($file_name)

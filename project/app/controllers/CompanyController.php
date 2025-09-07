@@ -16,6 +16,7 @@ class CompanyController extends controller
         $new_company->insert($name);
         header('location: ' . Constants::BASE_URL . "dashboard/admin");
     }
+    
     public function showPage()
     {
         $csrf = new SecurityService();

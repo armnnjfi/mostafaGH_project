@@ -77,7 +77,7 @@ class route
                 'action' => 'getEmployeesWithoutCompany',
                 'method' => 'GET'
             ],
-             //set company for employees
+            //set company for employees
             [
                 'url' => '/^setCompanyForEmp$/',
                 'controller' => 'EmployeeController',
@@ -98,15 +98,14 @@ class route
                 'action' => 'submitAttendance',
                 'method' => 'POST'
             ],
-
-             // show request form
+            // show request form
             [
                 'url' => '/^leave_form$/',
                 'controller' => 'LeaveController',
                 'action' => 'showForm',
                 'method' => 'GET'
             ],
-             // send request to admin
+            // send request to admin
             [
                 'url' => '/^leave_form$/',
                 'controller' => 'LeaveController',
@@ -117,7 +116,7 @@ class route
             // leave requests list
             [
                 'url' => '/^leave_requests$/',
-                'controller' => 'LeaveController',
+                'controller' => 'AdminController',
                 'action' => 'showLeaveRequests',
                 'method' => 'GET'
             ],
@@ -127,6 +126,21 @@ class route
                 'controller' => 'LeaveController',
                 'action' => 'approve_reject_request',
                 'method' => 'POST'
+            ],
+            // Attendance reports
+            [
+                'url' => '/^Attendance_reports$/',
+                'controller' => 'AdminController',
+                'action' => 'showAllAttendances',
+                'method' => 'GET'
+            ],
+
+            // اضافه کردن به آرایه $urls_arr
+            [
+                'url' => '/^reports$/',
+                'controller' => 'AdminController',
+                'action' => 'reports',
+                'method' => 'GET'
             ],
         ];
         $routing_fail = true;

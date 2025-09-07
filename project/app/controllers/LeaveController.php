@@ -34,22 +34,6 @@ class LeaveController extends controller
         header('location: ' . Constants::BASE_URL . "dashboard/employee");
     }
 
-    public function showLeaveRequests()
-    {
-        if ($this->check_auth() && $this->is_admin()) {
-            $csrf = new SecurityService();
-            $csrf->setCSRFToken();
-
-            $requests = new Leave();
-            $requests = $requests->showRequests();
-
-            $this->view('leaveRequestsList', ['csrf_token' => $csrf->getCSRFToken(), 'leave_requests' => $requests]);
-        } else {
-            header('location:' . Constants::BASE_URL . 'login');
-            exit();
-        }
-    }
-
 
     public function approve_reject_request()
     {

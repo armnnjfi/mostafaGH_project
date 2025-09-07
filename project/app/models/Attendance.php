@@ -32,4 +32,38 @@ class Attendance extends model
 
         return $res ? $res['check_in'] : null;
     }
+
+    public function getDailyReport($date)
+    {
+        $query = "SELECT u.name, a.check_in, a.check_out, a.total_hours
+              FROM attendance a
+              JOIN users u ON a.user_id = u.id
+              WHERE a.date = ?";
+        $result = $this->connection->prepare($query);
+        $result->bind_param("s", $date);
+        $result->execute();
+        return $result->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getMonthlyReport($month, $year)
+    {
+        $query = "SELECT u.name, SEC_TO_TIME(SUM(TIME_TO_SEC(a.total_hours))) AS total_hours
+              FROM attendance a
+              JOIN users u ON a.user_id = u.id
+              WHERE MONTH(a.date) = ? AND YEAR(a.date) = ?
+              GROUP BY u.id, u.name";
+        $result = $this->connection->prepare($query);
+        $result->bind_param("ii", $month, $year);
+        $result->execute();
+        return $result->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
+
+
+    public function showReports()
+    {
+        $query = "SELECT * , users.name,attendance.id as report_id FROM `attendance` join `users` on attendance.user_id = users.id";
+        $result = $this->connection->prepare($query);
+        $result->execute();
+        return $result->get_result();
+    }
 }
